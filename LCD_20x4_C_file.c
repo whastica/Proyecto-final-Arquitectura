@@ -1,8 +1,8 @@
-/*
- * LCD_20x4_C_file.c
- * http://www.electronicwings.com
- *
- */
+/* 
+ / File:   LCD_20x4_source_File.c
+ / Autores: Juan David Pasquel y Whalen Stiven Caicedo
+ / Created on 13 de diciembre de 2020
+*/
 
 #include<xc.h>
 #include "LCD_20x4_H_file.h"						/* Include LCD header file */

@@ -1,6 +1,8 @@
-/* PIC18F4550 USART Source File 
- * http://www.electronicwings.com
- */
+/* 
+ / File:   USART_source_File.c
+ / Autores: Juan David Pasquel y Whalen Stiven Caicedo
+ / Created on 13 de diciembre de 2020
+*/
 
 #include "USART_Header_File.h"
 

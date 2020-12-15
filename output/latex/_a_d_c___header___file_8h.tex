@@ -1,0 +1,70 @@
+\hypertarget{_a_d_c___header___file_8h}{}\doxysection{Referencia del Archivo A\+D\+C\+\_\+\+Header\+\_\+\+File.\+h}
+\label{_a_d_c___header___file_8h}\index{ADC\_Header\_File.h@{ADC\_Header\_File.h}}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_a_d_c___header___file_8h_a3fdaf3b8949082abe85a7e7083087eb7}{A\+D\+C\+\_\+\+Init}} ()
+\begin{DoxyCompactList}\small\item\em inicializa el A\+DC \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_a_d_c___header___file_8h_aa91e69fb6ed0dbb5b6b9e76c0d953e23}{A\+D\+C\+\_\+\+Read}} (int)
+\begin{DoxyCompactList}\small\item\em lee el A\+DC \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{_a_d_c___header___file_8h_a3fdaf3b8949082abe85a7e7083087eb7}\label{_a_d_c___header___file_8h_a3fdaf3b8949082abe85a7e7083087eb7}} 
+\index{ADC\_Header\_File.h@{ADC\_Header\_File.h}!ADC\_Init@{ADC\_Init}}
+\index{ADC\_Init@{ADC\_Init}!ADC\_Header\_File.h@{ADC\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_Init()}{ADC\_Init()}}
+{\footnotesize\ttfamily void A\+D\+C\+\_\+\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+inicializa el A\+DC 
+
+puerto a como entrada A\+D\+C\+O\+N1 fija los pines como analogos y fija la referencia de voltaje a 5 voltios A\+D\+C\+O\+N2 Justificacion a la derecha y tiempo de adquisicion y conversion Adres Registros del A\+DC
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12 \{    }
+\DoxyCodeLine{20     TRISA = 0xFF;   }
+\DoxyCodeLine{21     ADCON1 = 0xFF;  }
+\DoxyCodeLine{22     ADCON2 = 0x92;  }
+\DoxyCodeLine{23     ADRESH=0;       }
+\DoxyCodeLine{24     ADRESL=0;   }
+\DoxyCodeLine{25 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_a_d_c___header___file_8h_aa91e69fb6ed0dbb5b6b9e76c0d953e23}\label{_a_d_c___header___file_8h_aa91e69fb6ed0dbb5b6b9e76c0d953e23}} 
+\index{ADC\_Header\_File.h@{ADC\_Header\_File.h}!ADC\_Read@{ADC\_Read}}
+\index{ADC\_Read@{ADC\_Read}!ADC\_Header\_File.h@{ADC\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{ADC\_Read()}{ADC\_Read()}}
+{\footnotesize\ttfamily int A\+D\+C\+\_\+\+Read (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+lee el A\+DC 
+
+Lectura A\+DC 
+\begin{DoxyParams}{Parámetros}
+{\em channel} & canal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+variable digital
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30     }
+\DoxyCodeLine{37     \textcolor{keywordtype}{int} digital;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{comment}{/* Channel 0 is selected i.e.(CHS3CHS2CHS1CHS0=0000) \& ADC is disabled */}}
+\DoxyCodeLine{40     ADCON0 =(ADCON0 \& 0b11000011)|((channel<<2) \& 0b00111100);  }
+\DoxyCodeLine{41     }
+\DoxyCodeLine{42     ADCON0 |= ((1<<ADON)|(1<<GO));  \textcolor{comment}{/*Enable ADC and start conversion*/}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{/* Wait for End of conversion i.e. Go/done'=0 conversion completed */}}
+\DoxyCodeLine{45     \textcolor{keywordflow}{while}(ADCON0bits.GO\_nDONE==1);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     digital = (ADRESH*256) | (ADRESL);  \textcolor{comment}{/*Combine 8-\/bit LSB and 2-\/bit MSB*/}}
+\DoxyCodeLine{48     \textcolor{keywordflow}{return}(digital);}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}

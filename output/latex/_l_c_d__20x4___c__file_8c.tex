@@ -1,0 +1,154 @@
+\hypertarget{_l_c_d__20x4___c__file_8c}{}\doxysection{Referencia del Archivo L\+C\+D\+\_\+20x4\+\_\+\+C\+\_\+file.\+c}
+\label{_l_c_d__20x4___c__file_8c}\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}L\+C\+D\+\_\+20x4\+\_\+\+H\+\_\+file.\+h\char`\"{}}\newline
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{L\+C\+D\+\_\+\+Command}} (char cmd)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}{L\+C\+D\+\_\+\+Char}} (char char\+\_\+data)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aa53c9d40f3aa552a9974cd55ac510cb3}{L\+C\+D\+\_\+\+Init}} (void)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{L\+C\+D\+\_\+\+String}} (const char $\ast$str)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}{L\+C\+D\+\_\+\+String\+\_\+xy}} (char row, char pos, const char $\ast$str)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_ae60d0b62d7eb3fa31266c095d7b3c245}{L\+C\+D\+\_\+\+Clear}} (void)
+\item 
+void \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{M\+Sdelay}} (unsigned int val)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}\label{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_Char@{LCD\_Char}}
+\index{LCD\_Char@{LCD\_Char}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_Char()}{LCD\_Char()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+Char (\begin{DoxyParamCaption}\item[{char}]{ }\end{DoxyParamCaption})}
+
+L\+CD escribe datos en la funcion 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_abefea06b8c7a25ea8f44c41945bf3949}{LCD\_Data\_Port}} = char\_data;                     \textcolor{comment}{/* Write data to LCD data port */}}
+\DoxyCodeLine{25     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_af8903d8eea3868940c60af887473b152}{RS}} = 1;                                           \textcolor{comment}{/* Make RS LOW (command reg.), RW LOW (Write) */}}
+\DoxyCodeLine{26     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_afc4ded33ac0ca43defcce639e965748a}{RW}} = 0;}
+\DoxyCodeLine{27     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_a22e6626f2c98ed902f8ded47f6438c05}{EN}} = 1;                   \textcolor{comment}{/* High to Low transition on EN (Enable) */}}
+\DoxyCodeLine{28     NOP();}
+\DoxyCodeLine{29     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_a22e6626f2c98ed902f8ded47f6438c05}{EN}} = 0;}
+\DoxyCodeLine{30     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(3);                                  \textcolor{comment}{/* Wait little bit */}                                   \textcolor{comment}{/* Wait little bit */}}
+\DoxyCodeLine{31 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_ae60d0b62d7eb3fa31266c095d7b3c245}\label{_l_c_d__20x4___c__file_8c_ae60d0b62d7eb3fa31266c095d7b3c245}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_Clear@{LCD\_Clear}}
+\index{LCD\_Clear@{LCD\_Clear}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_Clear()}{LCD\_Clear()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+Clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+L\+CD funcion limpiar 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{71 \{}
+\DoxyCodeLine{72     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x01);                              \textcolor{comment}{/* Clear LCD command */}}
+\DoxyCodeLine{73     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(3);}
+\DoxyCodeLine{74     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x80);                              \textcolor{comment}{/* 8 is for first line and 0 is for 0th position */}}
+\DoxyCodeLine{75     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(1);}
+\DoxyCodeLine{76 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}\label{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_Command@{LCD\_Command}}
+\index{LCD\_Command@{LCD\_Command}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_Command()}{LCD\_Command()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+Command (\begin{DoxyParamCaption}\item[{char}]{cmd }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_abefea06b8c7a25ea8f44c41945bf3949}{LCD\_Data\_Port}} = cmd;                           \textcolor{comment}{/* Write command data to LCD data port */}}
+\DoxyCodeLine{14     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_af8903d8eea3868940c60af887473b152}{RS}} = 0;                                           \textcolor{comment}{/* Make RS LOW (command reg.), RW LOW (Write) */}}
+\DoxyCodeLine{15     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_afc4ded33ac0ca43defcce639e965748a}{RW}} = 0;}
+\DoxyCodeLine{16     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_a22e6626f2c98ed902f8ded47f6438c05}{EN}} = 1;                   \textcolor{comment}{/* High to Low transition on EN (Enable) */}}
+\DoxyCodeLine{17     NOP();}
+\DoxyCodeLine{18     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_a22e6626f2c98ed902f8ded47f6438c05}{EN}} = 0;}
+\DoxyCodeLine{19     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(3);                                  \textcolor{comment}{/* Wait little bit */}}
+\DoxyCodeLine{20 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_aa53c9d40f3aa552a9974cd55ac510cb3}\label{_l_c_d__20x4___c__file_8c_aa53c9d40f3aa552a9974cd55ac510cb3}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_Init@{LCD\_Init}}
+\index{LCD\_Init@{LCD\_Init}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_Init()}{LCD\_Init()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+L\+CD Inicializa la funcion 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{35     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_a2ba5a2a7121f3698a3126a62db1ab683}{LCD\_Command\_Dir}} = 0;     \textcolor{comment}{/* Make LCD command port direction as o/p */}}
+\DoxyCodeLine{36     \mbox{\hyperlink{_l_c_d__20x4___h__file_8h_afd1d7aa9573cc621f34ecd4eded67cd0}{LCD\_Data\_Dir}} = 0;                           \textcolor{comment}{/* Make LCD data port direction as o/p */}}
+\DoxyCodeLine{37     }
+\DoxyCodeLine{38     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(20);                                 \textcolor{comment}{/* LCD power up time to get things ready, it should always >15ms */}}
+\DoxyCodeLine{39     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x38);                              \textcolor{comment}{/* Initialize 16X2 LCD in 8bit mode */}}
+\DoxyCodeLine{40     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x0C);                              \textcolor{comment}{/* Display ON, Cursor OFF command */}}
+\DoxyCodeLine{41     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x06);                              \textcolor{comment}{/* Auto Increment cursor */}}
+\DoxyCodeLine{42     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x01);                              \textcolor{comment}{/* Clear LCD command */}}
+\DoxyCodeLine{43     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}{MSdelay}}(3);}
+\DoxyCodeLine{44     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}} (0x80);                              \textcolor{comment}{/* 8 is for first line and 0 is for 0th position */}}
+\DoxyCodeLine{45 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}\label{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_String@{LCD\_String}}
+\index{LCD\_String@{LCD\_String}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_String()}{LCD\_String()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ }\end{DoxyParamCaption})}
+
+Enviar cadena a la función L\+CD 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49     \textcolor{keywordtype}{int} i;}
+\DoxyCodeLine{50     \textcolor{keywordflow}{while}((*str)!=0)                            \textcolor{comment}{/* Send each char of string till the NULL */}}
+\DoxyCodeLine{51     \{}
+\DoxyCodeLine{52         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}{LCD\_Char}} (*str);                            \textcolor{comment}{/* Call LCD data write */}}
+\DoxyCodeLine{53         str++;}
+\DoxyCodeLine{54     \}}
+\DoxyCodeLine{55 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}\label{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!LCD\_String\_xy@{LCD\_String\_xy}}
+\index{LCD\_String\_xy@{LCD\_String\_xy}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{LCD\_String\_xy()}{LCD\_String\_xy()}}
+{\footnotesize\ttfamily void L\+C\+D\+\_\+\+String\+\_\+xy (\begin{DoxyParamCaption}\item[{char}]{,  }\item[{char}]{,  }\item[{const char $\ast$}]{ }\end{DoxyParamCaption})}
+
+Enviar fila, posición y cadena a la función L\+CD 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{58 \{}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} (row == 1)}
+\DoxyCodeLine{60         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}}((pos \& 0x0F)|0x80);              \textcolor{comment}{/* Command of first row and required position<16 */}}
+\DoxyCodeLine{61     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (row == 2)}
+\DoxyCodeLine{62         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}}((pos \& 0x0F)|0xC0);              \textcolor{comment}{/* Command of Second row and required position<16 */}}
+\DoxyCodeLine{63     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (row == 3)}
+\DoxyCodeLine{64         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}}((pos \& 0x0F)|0x94);              \textcolor{comment}{/* Command of Third row and required position<16 */}}
+\DoxyCodeLine{65     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (row == 4)}
+\DoxyCodeLine{66         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aaf2faa30943637e2d89ae27e01474675}{LCD\_Command}}((pos \& 0x0F)|0xD4);              \textcolor{comment}{/* Command of Fourth row and required position<16 */}}
+\DoxyCodeLine{67     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{LCD\_String}}(str);                              \textcolor{comment}{/* Call LCD string function */}}
+\DoxyCodeLine{68 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}\label{_l_c_d__20x4___c__file_8c_add81c609b8f23ffa5eb45774bc49b88e}} 
+\index{LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}!MSdelay@{MSdelay}}
+\index{MSdelay@{MSdelay}!LCD\_20x4\_C\_file.c@{LCD\_20x4\_C\_file.c}}
+\doxysubsubsection{\texorpdfstring{MSdelay()}{MSdelay()}}
+{\footnotesize\ttfamily void M\+Sdelay (\begin{DoxyParamCaption}\item[{unsigned int}]{ }\end{DoxyParamCaption})}
+
+funcion de retardo 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{79 \{}
+\DoxyCodeLine{80      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i,j;}
+\DoxyCodeLine{81         \textcolor{keywordflow}{for}(i=0;i<val;i++)}
+\DoxyCodeLine{82             \textcolor{keywordflow}{for}(j=0;j<165;j++);      \textcolor{comment}{/*This count Provide delay of 1 ms for 8MHz Frequency */}}
+\DoxyCodeLine{83  \}}
+
+\end{DoxyCode}

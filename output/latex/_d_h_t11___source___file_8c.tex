@@ -1,0 +1,89 @@
+\hypertarget{_d_h_t11___source___file_8c}{}\doxysection{Referencia del Archivo D\+H\+T11\+\_\+\+Source\+\_\+\+File.\+c}
+\label{_d_h_t11___source___file_8c}\index{DHT11\_Source\_File.c@{DHT11\_Source\_File.c}}
+{\ttfamily \#include $<$pic18f4550.\+h$>$}\newline
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}D\+H\+T11\+\_\+\+Header\+\_\+\+File.\+h\char`\"{}}\newline
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{_d_h_t11___source___file_8c_a7f212cbff6a7405d592345b11c669b44}{D\+H\+T11\+\_\+\+Read\+Data}} ()
+\begin{DoxyCompactList}\small\item\em lee datos del D\+H\+T11 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_h_t11___source___file_8c_a37a28aa0907c950935c84f61cf236b5b}{D\+H\+T11\+\_\+\+Start}} ()
+\begin{DoxyCompactList}\small\item\em lee datos del D\+H\+T11 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_h_t11___source___file_8c_a0f2c42763f48efa474deee500f49fe8d}{D\+H\+T11\+\_\+\+Check\+Response}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{_d_h_t11___source___file_8c_a0f2c42763f48efa474deee500f49fe8d}\label{_d_h_t11___source___file_8c_a0f2c42763f48efa474deee500f49fe8d}} 
+\index{DHT11\_Source\_File.c@{DHT11\_Source\_File.c}!DHT11\_CheckResponse@{DHT11\_CheckResponse}}
+\index{DHT11\_CheckResponse@{DHT11\_CheckResponse}!DHT11\_Source\_File.c@{DHT11\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{DHT11\_CheckResponse()}{DHT11\_CheckResponse()}}
+{\footnotesize\ttfamily void D\+H\+T11\+\_\+\+Check\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+espera hasta que el autobús esté alto
+
+espera hasta que el autobús esté bajo
+
+espera hasta que el autobús esté alto
+\begin{DoxyCode}{0}
+\DoxyCodeLine{49 \{}
+\DoxyCodeLine{50     \textcolor{keywordflow}{while}(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1);     }
+\DoxyCodeLine{51     \textcolor{keywordflow}{while}(!(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1));  }
+\DoxyCodeLine{52     \textcolor{keywordflow}{while}(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1);     }
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_d_h_t11___source___file_8c_a7f212cbff6a7405d592345b11c669b44}\label{_d_h_t11___source___file_8c_a7f212cbff6a7405d592345b11c669b44}} 
+\index{DHT11\_Source\_File.c@{DHT11\_Source\_File.c}!DHT11\_ReadData@{DHT11\_ReadData}}
+\index{DHT11\_ReadData@{DHT11\_ReadData}!DHT11\_Source\_File.c@{DHT11\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{DHT11\_ReadData()}{DHT11\_ReadData()}}
+{\footnotesize\ttfamily char D\+H\+T11\+\_\+\+Read\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+lee datos del D\+H\+T11 
+
+Espera el pulso 0 para iniciar el pulso de datos ~\newline
+
+
+comprobar si el dato es 1 o 0
+\begin{DoxyCode}{0}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{18     \textcolor{keywordtype}{char} i,data = 0;  }
+\DoxyCodeLine{19     \textcolor{keywordflow}{for}(i=0;i<8;i++)}
+\DoxyCodeLine{20     \{}
+\DoxyCodeLine{21         \textcolor{keywordflow}{while}(!(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1));   }
+\DoxyCodeLine{22         \_\_delay\_us(30);         }
+\DoxyCodeLine{23         \textcolor{keywordflow}{if}(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1)             }
+\DoxyCodeLine{24           data = ((data<<1) | 1); }
+\DoxyCodeLine{25         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{26           data = (data<<1);  }
+\DoxyCodeLine{27         \textcolor{keywordflow}{while}(\mbox{\hyperlink{_d_h_t11___header___file_8h_a69caaefa7115b4d60be5cf19d8a41722}{Data\_In}} \& 1);}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29     \textcolor{keywordflow}{return} data;}
+\DoxyCodeLine{30 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_d_h_t11___source___file_8c_a37a28aa0907c950935c84f61cf236b5b}\label{_d_h_t11___source___file_8c_a37a28aa0907c950935c84f61cf236b5b}} 
+\index{DHT11\_Source\_File.c@{DHT11\_Source\_File.c}!DHT11\_Start@{DHT11\_Start}}
+\index{DHT11\_Start@{DHT11\_Start}!DHT11\_Source\_File.c@{DHT11\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{DHT11\_Start()}{DHT11\_Start()}}
+{\footnotesize\ttfamily void D\+H\+T11\+\_\+\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+lee datos del D\+H\+T11 
+
+Establece el puerto de salida envia un bajo pulso por ultimo establecer como puero de entrada
+\begin{DoxyCode}{0}
+\DoxyCodeLine{33 \{   }
+\DoxyCodeLine{40     \mbox{\hyperlink{_d_h_t11___header___file_8h_a369cc21ac5518187c26e5ebc094614ff}{Data\_Dir}} = 0;       }
+\DoxyCodeLine{41     \mbox{\hyperlink{_d_h_t11___header___file_8h_a0280024a0f86151be9e9e91cfa533aaf}{Data\_Out}} = 0;      }
+\DoxyCodeLine{42     \_\_delay\_ms(18);}
+\DoxyCodeLine{43     \mbox{\hyperlink{_d_h_t11___header___file_8h_a0280024a0f86151be9e9e91cfa533aaf}{Data\_Out}} = 1;       }
+\DoxyCodeLine{44     \_\_delay\_us(20);}
+\DoxyCodeLine{45     \mbox{\hyperlink{_d_h_t11___header___file_8h_a369cc21ac5518187c26e5ebc094614ff}{Data\_Dir}} = 1;        }
+\DoxyCodeLine{46 \}}
+
+\end{DoxyCode}

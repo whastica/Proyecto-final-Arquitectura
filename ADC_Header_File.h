@@ -1,9 +1,8 @@
 /* 
  * File:   ADC_Header_File.h
- * Author: Henry Muñoz
- *
- * Created on 13 de diciembre de 2020, 01:06 AM
- */
+ * Autores: Juan David Pasquel y Whalen Stiven Caicedo
+ * Created on 13 de diciembre de 2020
+*/
 
 #ifndef ADC_HEADER_FILE_H
 #define	ADC_HEADER_FILE_H

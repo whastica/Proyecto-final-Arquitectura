@@ -1,18 +1,39 @@
+/* 
+ * File:   ADC_source_File.c
+ * Autores: Juan David Pasquel y Whalen Stiven Caicedo
+ * Created on 13 de diciembre de 2020
+*/
+
 #include<pic18f4550.h>
 #include<xc.h>
 #include "ADC_Header_File.h"
-
+/**\brief inicializa el ADC*/
 void ADC_Init()
 {    
-    TRISA = 0xFF;	/* Set as input port */
-    ADCON1 = 0xFF;	/* Ref vtg is VDD and Configure pin as analog pin */
-    ADCON2 = 0x92;	/* Right Justified, 4Tad and Fosc/32. */
-    ADRESH=0;		/* Flush ADC output Register */
+    /**
+      \details 
+        * puerto a como entrada
+        * ADCON1 fija los pines como analogos y fija la referencia de voltaje a 5 voltios 
+        * ADCON2 Justificacion a la derecha y tiempo de adquisicion y conversion 
+        * Adres Registros del ADC
+    */
+    TRISA = 0xFF;	
+    ADCON1 = 0xFF;	
+    ADCON2 = 0x92;	
+    ADRESH=0;		
     ADRESL=0;   
-}   
+}
 
+/**\brief lee el ADC*/
 int ADC_Read(int channel)
 {
+    
+    /**
+      \details 
+        *Lectura ADC
+        \param channel canal 
+        \return variable digital 
+    */
     int digital;
 
     /* Channel 0 is selected i.e.(CHS3CHS2CHS1CHS0=0000) & ADC is disabled */

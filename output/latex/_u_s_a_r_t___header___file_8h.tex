@@ -1,0 +1,113 @@
+\hypertarget{_u_s_a_r_t___header___file_8h}{}\doxysection{Referencia del Archivo U\+S\+A\+R\+T\+\_\+\+Header\+\_\+\+File.\+h}
+\label{_u_s_a_r_t___header___file_8h}\index{USART\_Header\_File.h@{USART\_Header\_File.h}}
+{\ttfamily \#include $<$pic18f4550.\+h$>$}\newline
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+\doxysubsection*{defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}}~8000000/64
+\item 
+\#define \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_acea008bd2e51bf8d1466e20b35ff2742}{Baud\+\_\+value}}~(((float)(\mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}})/(float)baud\+\_\+rate)-\/1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a9da0ff2cd0e74359fab0cc3b86cf937c}{U\+S\+A\+R\+T\+\_\+\+Init}} (long)
+\item 
+void \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a1ecf3a492db255ed7bea73afddc26a00}{U\+S\+A\+R\+T\+\_\+\+Tx\+Char}} (char)
+\item 
+void \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a4a1732544fe63b57954eda2fdf6fd5e0}{U\+S\+A\+R\+T\+\_\+\+Send\+String}} (const char $\ast$)
+\item 
+char \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a600231bce9ac71e7b6408b801e4516e7}{U\+S\+A\+R\+T\+\_\+\+Rx\+Char}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
+\mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_acea008bd2e51bf8d1466e20b35ff2742}\label{_u_s_a_r_t___header___file_8h_acea008bd2e51bf8d1466e20b35ff2742}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!Baud\_value@{Baud\_value}}
+\index{Baud\_value@{Baud\_value}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{Baud\_value}{Baud\_value}}
+{\footnotesize\ttfamily \#define Baud\+\_\+value~(((float)(\mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}})/(float)baud\+\_\+rate)-\/1)}
+
+\#define \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_acea008bd2e51bf8d1466e20b35ff2742}{Baud\+\_\+value(baud\+\_\+rate)}} (((float)(F\+\_\+\+C\+PU)/(float)baud\+\_\+rate)-\/1) \mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_a43bafb28b29491ec7f871319b5a3b2f8}\label{_u_s_a_r_t___header___file_8h_a43bafb28b29491ec7f871319b5a3b2f8}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!F\_CPU@{F\_CPU}}
+\index{F\_CPU@{F\_CPU}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{F\_CPU}{F\_CPU}}
+{\footnotesize\ttfamily \#define F\+\_\+\+C\+PU~8000000/64}
+
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_a9da0ff2cd0e74359fab0cc3b86cf937c}\label{_u_s_a_r_t___header___file_8h_a9da0ff2cd0e74359fab0cc3b86cf937c}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!USART\_Init@{USART\_Init}}
+\index{USART\_Init@{USART\_Init}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{USART\_Init()}{USART\_Init()}}
+{\footnotesize\ttfamily void U\+S\+A\+R\+T\+\_\+\+Init (\begin{DoxyParamCaption}\item[{long}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keywordtype}{float} temp;}
+\DoxyCodeLine{13     TRISC6=0;                       \textcolor{comment}{/*Make Tx pin as output*/}}
+\DoxyCodeLine{14     TRISC7=1;                       \textcolor{comment}{/*Make Rx pin as input*/}}
+\DoxyCodeLine{15     temp=\mbox{\hyperlink{_u_s_a_r_t___header___file_8h_acea008bd2e51bf8d1466e20b35ff2742}{Baud\_value}};     }
+\DoxyCodeLine{16     SPBRG=(int)temp;                \textcolor{comment}{/*baud rate=9600, SPBRG = (F\_CPU /(64*9600))-\/1*/}}
+\DoxyCodeLine{17     TXSTA=0x20;                     \textcolor{comment}{/*Transmit Enable(TX) enable*/} }
+\DoxyCodeLine{18     RCSTA=0x90;                     \textcolor{comment}{/*Receive Enable(RX) enable and serial port enable */}}
+\DoxyCodeLine{19 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_a600231bce9ac71e7b6408b801e4516e7}\label{_u_s_a_r_t___header___file_8h_a600231bce9ac71e7b6408b801e4516e7}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!USART\_RxChar@{USART\_RxChar}}
+\index{USART\_RxChar@{USART\_RxChar}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{USART\_RxChar()}{USART\_RxChar()}}
+{\footnotesize\ttfamily char U\+S\+A\+R\+T\+\_\+\+Rx\+Char (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{30    }
+\DoxyCodeLine{31     }
+\DoxyCodeLine{32     \textcolor{keywordflow}{while}(RCIF==0);                 \textcolor{comment}{/*wait for receive interrupt flag*/}}
+\DoxyCodeLine{33     \textcolor{keywordflow}{if}(RCSTAbits.OERR)}
+\DoxyCodeLine{34     \{           }
+\DoxyCodeLine{35         CREN = 0;}
+\DoxyCodeLine{36         NOP();}
+\DoxyCodeLine{37         CREN=1;}
+\DoxyCodeLine{38     \}}
+\DoxyCodeLine{39     \textcolor{keywordflow}{return}(RCREG);                  \textcolor{comment}{/*receive data is stored in RCREG register and return to main program */}}
+\DoxyCodeLine{40 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_a4a1732544fe63b57954eda2fdf6fd5e0}\label{_u_s_a_r_t___header___file_8h_a4a1732544fe63b57954eda2fdf6fd5e0}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!USART\_SendString@{USART\_SendString}}
+\index{USART\_SendString@{USART\_SendString}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{USART\_SendString()}{USART\_SendString()}}
+{\footnotesize\ttfamily void U\+S\+A\+R\+T\+\_\+\+Send\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44    \textcolor{keywordflow}{while}(*out!=\textcolor{charliteral}{'\(\backslash\)0'})}
+\DoxyCodeLine{45    \{            }
+\DoxyCodeLine{46         \mbox{\hyperlink{_u_s_a_r_t___source___file_8c_ac5781762c2fa78c52aba00675722069c}{USART\_TxChar}}(*out);}
+\DoxyCodeLine{47         out++;}
+\DoxyCodeLine{48    \}}
+\DoxyCodeLine{49 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_u_s_a_r_t___header___file_8h_a1ecf3a492db255ed7bea73afddc26a00}\label{_u_s_a_r_t___header___file_8h_a1ecf3a492db255ed7bea73afddc26a00}} 
+\index{USART\_Header\_File.h@{USART\_Header\_File.h}!USART\_TxChar@{USART\_TxChar}}
+\index{USART\_TxChar@{USART\_TxChar}!USART\_Header\_File.h@{USART\_Header\_File.h}}
+\doxysubsubsection{\texorpdfstring{USART\_TxChar()}{USART\_TxChar()}}
+{\footnotesize\ttfamily void U\+S\+A\+R\+T\+\_\+\+Tx\+Char (\begin{DoxyParamCaption}\item[{char}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22 \{        }
+\DoxyCodeLine{23         \textcolor{keywordflow}{while}(TXIF==0);            \textcolor{comment}{/*wait for transmit interrupt flag*/}}
+\DoxyCodeLine{24         TXREG=out;                 \textcolor{comment}{/*wait for transmit interrupt flag to set which indicates TXREG is ready}}
+\DoxyCodeLine{25 \textcolor{comment}{                                    for another transmission*/}    }
+\DoxyCodeLine{26 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,167 @@
+\hypertarget{_g_p_s___source___file_8c}{}\doxysection{Referencia del Archivo G\+P\+S\+\_\+\+Source\+\_\+\+File.\+c}
+\label{_g_p_s___source___file_8c}\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+{\ttfamily \#include $<$pic18f4550.\+h$>$}\newline
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}A\+D\+C\+\_\+\+Header\+\_\+\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}L\+C\+D\+\_\+20x4\+\_\+\+H\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}D\+H\+T11\+\_\+\+Header\+\_\+\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}U\+S\+A\+R\+T\+\_\+\+Header\+\_\+\+File.\+h\char`\"{}}\newline
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_g_p_s___source___file_8c_a339ca062ac8c441c93ca663a5479bf7e}{Light\+\_\+\+Management}} (unsigned long int U\+T\+C\+\_\+\+Time)
+\item 
+void \mbox{\hyperlink{_g_p_s___source___file_8c_a06043c2230a1d8f682b374155d3a202a}{Irrigation\+\_\+\+Management}} (char RH, char T)
+\item 
+void \mbox{\hyperlink{_g_p_s___source___file_8c_a6288eba0f8e8ad3ab1544ad731eb7667}{main}} (void)
+\begin{DoxyCompactList}\small\item\em principal del proyecto \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{_g_p_s___source___file_8c_a4c926b12186b6e94211d7c1408ff4af8}{string\+BT}} \mbox{[}50\mbox{]}
+\item 
+char \mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\+\_\+aux}} \mbox{[}50\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{_g_p_s___source___file_8c_a06043c2230a1d8f682b374155d3a202a}\label{_g_p_s___source___file_8c_a06043c2230a1d8f682b374155d3a202a}} 
+\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}!Irrigation\_Management@{Irrigation\_Management}}
+\index{Irrigation\_Management@{Irrigation\_Management}!GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{Irrigation\_Management()}{Irrigation\_Management()}}
+{\footnotesize\ttfamily void Irrigation\+\_\+\+Management (\begin{DoxyParamCaption}\item[{char}]{RH,  }\item[{char}]{T }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{107 \{}
+\DoxyCodeLine{108     \textcolor{keywordflow}{if}(RH<25 || (T<=20 \& T>0))}
+\DoxyCodeLine{109     \{}
+\DoxyCodeLine{110         LATB3=0xFF;}
+\DoxyCodeLine{111         \_\_delay\_ms(500);}
+\DoxyCodeLine{112         LATB3=0;}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_g_p_s___source___file_8c_a339ca062ac8c441c93ca663a5479bf7e}\label{_g_p_s___source___file_8c_a339ca062ac8c441c93ca663a5479bf7e}} 
+\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}!Light\_Management@{Light\_Management}}
+\index{Light\_Management@{Light\_Management}!GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{Light\_Management()}{Light\_Management()}}
+{\footnotesize\ttfamily void Light\+\_\+\+Management (\begin{DoxyParamCaption}\item[{unsigned long int}]{U\+T\+C\+\_\+\+Time }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{96 \{}
+\DoxyCodeLine{97     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} hour;}
+\DoxyCodeLine{98     hour = (UTC\_Time / 10000);}
+\DoxyCodeLine{99     \textcolor{keywordflow}{while}(hour>=18 \& hour<=6)}
+\DoxyCodeLine{100     \{}
+\DoxyCodeLine{101         LATB2=0xFF;}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103         LATB2=0x00;}
+\DoxyCodeLine{104 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{_g_p_s___source___file_8c_a6288eba0f8e8ad3ab1544ad731eb7667}\label{_g_p_s___source___file_8c_a6288eba0f8e8ad3ab1544ad731eb7667}} 
+\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}!main@{main}}
+\index{main@{main}!GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily void main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+principal del proyecto 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{23                 \{}
+\DoxyCodeLine{24     \textcolor{keywordtype}{char} value[10];}
+\DoxyCodeLine{25     \textcolor{keywordtype}{char} RH\_Decimal, RH\_Integral, T\_Decimal, T\_Integral, Checksum;}
+\DoxyCodeLine{26     }
+\DoxyCodeLine{27     OSCCON = 0xD2;      \textcolor{comment}{/* use internal osc. of 8MHz Freq. */}}
+\DoxyCodeLine{28     TRISBbits.RB2 = 0;}
+\DoxyCodeLine{29     TRISBbits.RB3 = 0;}
+\DoxyCodeLine{30     }
+\DoxyCodeLine{31     \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_aa53c9d40f3aa552a9974cd55ac510cb3}{LCD\_Init}}();}
+\DoxyCodeLine{32     INTCONbits.GIE=1;   \textcolor{comment}{/* enable Global Interrupt */}}
+\DoxyCodeLine{33     INTCONbits.PEIE=1;  \textcolor{comment}{/* enable Peripheral Interrupt */}}
+\DoxyCodeLine{34     PIE1bits.RCIE=1;    \textcolor{comment}{/* enable Receive Interrupt */}}
+\DoxyCodeLine{35     \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a9da0ff2cd0e74359fab0cc3b86cf937c}{USART\_Init}}(9600);}
+\DoxyCodeLine{36     \mbox{\hyperlink{_a_d_c___header___file_8h_a3fdaf3b8949082abe85a7e7083087eb7}{ADC\_Init}}();}
+\DoxyCodeLine{37     \_\_delay\_ms(10);}
+\DoxyCodeLine{38     }
+\DoxyCodeLine{39     \textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{40     \{ }
+\DoxyCodeLine{41         \mbox{\hyperlink{_d_h_t11___header___file_8h_a37a28aa0907c950935c84f61cf236b5b}{DHT11\_Start}}();                  \textcolor{comment}{/* send start pulse to DHT11 module */}}
+\DoxyCodeLine{42         \mbox{\hyperlink{_d_h_t11___header___file_8h_a0f2c42763f48efa474deee500f49fe8d}{DHT11\_CheckResponse}}();          \textcolor{comment}{/* wait for response from DHT11 module */}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44         \textcolor{comment}{/* read 40-\/bit data from DHT11 module */}}
+\DoxyCodeLine{45         RH\_Integral = \mbox{\hyperlink{_d_h_t11___header___file_8h_a7f212cbff6a7405d592345b11c669b44}{DHT11\_ReadData}}(); \textcolor{comment}{/* read Relative Humidity's integral value */}}
+\DoxyCodeLine{46         RH\_Decimal  = \mbox{\hyperlink{_d_h_t11___header___file_8h_a7f212cbff6a7405d592345b11c669b44}{DHT11\_ReadData}}(); \textcolor{comment}{/* read Relative Humidity's decimal value */}}
+\DoxyCodeLine{47         T\_Integral  = \mbox{\hyperlink{_d_h_t11___header___file_8h_a7f212cbff6a7405d592345b11c669b44}{DHT11\_ReadData}}(); \textcolor{comment}{/* read Temperature's integral value */}}
+\DoxyCodeLine{48         T\_Decimal   = \mbox{\hyperlink{_d_h_t11___header___file_8h_a7f212cbff6a7405d592345b11c669b44}{DHT11\_ReadData}}(); \textcolor{comment}{/* read Relative Temperature's decimal value */}}
+\DoxyCodeLine{49         Checksum    = \mbox{\hyperlink{_d_h_t11___header___file_8h_a7f212cbff6a7405d592345b11c669b44}{DHT11\_ReadData}}(); \textcolor{comment}{/* read 8-\/bit checksum value */}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}{LCD\_String\_xy}}(1,0,\textcolor{stringliteral}{"{}DATE: "{}});}
+\DoxyCodeLine{52         }
+\DoxyCodeLine{53         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}{LCD\_String\_xy}}(2,0,\textcolor{stringliteral}{"{}TIME: "{}});}
+\DoxyCodeLine{54         }
+\DoxyCodeLine{55         \textcolor{comment}{/* convert temperature value to ascii and send it to display*/}}
+\DoxyCodeLine{56         memset(value,0,10);             }
+\DoxyCodeLine{57         sprintf(value,\textcolor{stringliteral}{"{}\%d"{}},T\_Integral); }
+\DoxyCodeLine{58         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}{LCD\_String\_xy}}(3,0,\textcolor{stringliteral}{"{}TEMP: "{}});}
+\DoxyCodeLine{59         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{LCD\_String}}(value);}
+\DoxyCodeLine{60         sprintf(value,\textcolor{stringliteral}{"{}.\%d"{}},T\_Decimal); }
+\DoxyCodeLine{61         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{LCD\_String}}(value);}
+\DoxyCodeLine{62         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}{LCD\_Char}}(0xdf);}
+\DoxyCodeLine{63         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}{LCD\_Char}}(\textcolor{charliteral}{'C'});}
+\DoxyCodeLine{64         }
+\DoxyCodeLine{65         \textcolor{comment}{/* convert humidity value to ascii and send it to display*/}    }
+\DoxyCodeLine{66         memset(value,0,10);}
+\DoxyCodeLine{67         sprintf(value,\textcolor{stringliteral}{"{}\%d"{}},RH\_Integral);}
+\DoxyCodeLine{68         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a46cc42a96c9ea1076385205e032406aa}{LCD\_String\_xy}}(4,0,\textcolor{stringliteral}{"{}HUMEDITY: "{}});}
+\DoxyCodeLine{69         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{LCD\_String}}(value);}
+\DoxyCodeLine{70         sprintf(value,\textcolor{stringliteral}{"{}.\%d "{}},RH\_Decimal);}
+\DoxyCodeLine{71         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_a2039b4df54e3909aebf93ae40ab38f8c}{LCD\_String}}(value);}
+\DoxyCodeLine{72         \mbox{\hyperlink{_l_c_d__20x4___c__file_8c_adf43ce9d16ca7b9394f5bc109221dcf4}{LCD\_Char}}(\textcolor{charliteral}{'\%'});}
+\DoxyCodeLine{73         }
+\DoxyCodeLine{74         \mbox{\hyperlink{_g_p_s___source___file_8c_a06043c2230a1d8f682b374155d3a202a}{Irrigation\_Management}}(RH\_Integral, T\_Integral);}
+\DoxyCodeLine{75         }
+\DoxyCodeLine{76         sprintf(value,\textcolor{stringliteral}{"{}\%d"{}},RH\_Integral);}
+\DoxyCodeLine{77         strcpy(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, value);}
+\DoxyCodeLine{78         sprintf(value,\textcolor{stringliteral}{"{}.\%d"{}},RH\_Decimal);}
+\DoxyCodeLine{79         strcat(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, value);}
+\DoxyCodeLine{80         \_\_delay\_ms(500);}
+\DoxyCodeLine{81         }
+\DoxyCodeLine{82         strcat(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, \textcolor{stringliteral}{"{},"{}});}
+\DoxyCodeLine{83         sprintf(value,\textcolor{stringliteral}{"{}\%d"{}},T\_Integral);}
+\DoxyCodeLine{84         strcat(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, value);}
+\DoxyCodeLine{85         sprintf(value,\textcolor{stringliteral}{"{}.\%d"{}},T\_Decimal);}
+\DoxyCodeLine{86         strcat(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, value);}
+\DoxyCodeLine{87         }
+\DoxyCodeLine{88         strcat(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}}, \textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n"{}});}
+\DoxyCodeLine{89         \mbox{\hyperlink{_u_s_a_r_t___header___file_8h_a4a1732544fe63b57954eda2fdf6fd5e0}{USART\_SendString}}(\mbox{\hyperlink{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}{val\_aux}});  \textcolor{comment}{/* send LED ON status to terminal */}}
+\DoxyCodeLine{90         }
+\DoxyCodeLine{91         \_\_delay\_ms(500);}
+\DoxyCodeLine{92     \}}
+\DoxyCodeLine{93 \} }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Documentación de las variables}
+\mbox{\Hypertarget{_g_p_s___source___file_8c_a4c926b12186b6e94211d7c1408ff4af8}\label{_g_p_s___source___file_8c_a4c926b12186b6e94211d7c1408ff4af8}} 
+\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}!stringBT@{stringBT}}
+\index{stringBT@{stringBT}!GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{stringBT}{stringBT}}
+{\footnotesize\ttfamily char string\+BT\mbox{[}50\mbox{]}}
+
+\mbox{\Hypertarget{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}\label{_g_p_s___source___file_8c_a46c027f3247f7c69ea0123d245cec1bc}} 
+\index{GPS\_Source\_File.c@{GPS\_Source\_File.c}!val\_aux@{val\_aux}}
+\index{val\_aux@{val\_aux}!GPS\_Source\_File.c@{GPS\_Source\_File.c}}
+\doxysubsubsection{\texorpdfstring{val\_aux}{val\_aux}}
+{\footnotesize\ttfamily char val\+\_\+aux\mbox{[}50\mbox{]}}
+

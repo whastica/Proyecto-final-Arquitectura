@@ -1,4 +1,8 @@
-
+/* 
+ / File:   GPS_source_File.c
+ / Autores: Juan David Pasquel y Whalen Stiven Caicedo
+ / Created on 13 de diciembre de 2020
+*/
 #include<pic18f4550.h>
 #include<xc.h>
 #include<string.h>
@@ -15,18 +19,26 @@ void Irrigation_Management(char RH, char T);
 char stringBT [50];
 char val_aux [50];
 
+/**\brief principal del proyecto*/
 void main(void) {
+    
+    /**
+      \details 
+       * Establece el ascilador interno con una Fq de 4 MHZ
+       * envia un bajo pulso
+       * por ultimo establecer como puero de entrada 
+    */
     char value[10];
     char RH_Decimal, RH_Integral, T_Decimal, T_Integral, Checksum;
     
-    OSCCON = 0xD2;      /* use internal osc. of 8MHz Freq. */
+    OSCCON = 0xD2;   
     TRISBbits.RB2 = 0;
     TRISBbits.RB3 = 0;
     
     LCD_Init();
-    INTCONbits.GIE=1;   /* enable Global Interrupt */
-    INTCONbits.PEIE=1;  /* enable Peripheral Interrupt */
-    PIE1bits.RCIE=1;    /* enable Receive Interrupt */
+    INTCONbits.GIE=1;   /** Habilita la interrupcion global */
+    INTCONbits.PEIE=1;  /** habilita la interrupcion periferica */
+    PIE1bits.RCIE=1;    /* habilita la recepcion de interrupcion */
     USART_Init(9600);
     ADC_Init();
     __delay_ms(10);
@@ -47,7 +59,7 @@ void main(void) {
         
         LCD_String_xy(2,0,"TIME: ");
         
-        /* convert temperature value to ascii and send it to display*/
+        /** convertir el valor de temperatura a ascii y enviarlo para mostrar*/
         memset(value,0,10);             
         sprintf(value,"%d",T_Integral); 
         LCD_String_xy(3,0,"TEMP: ");
@@ -57,7 +69,7 @@ void main(void) {
         LCD_Char(0xdf);
         LCD_Char('C');
         
-        /* convert humidity value to ascii and send it to display*/    
+        /** convertir el valor de humedad a ascii y enviarlo para mostrar*/    
         memset(value,0,10);
         sprintf(value,"%d",RH_Integral);
         LCD_String_xy(4,0,"HUMEDITY: ");
