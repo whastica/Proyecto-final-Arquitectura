@@ -5883,10 +5883,7 @@ void main(void) {
         T_Decimal = DHT11_ReadData();
         Checksum = DHT11_ReadData();
 
-
-
         LCD_String_xy(1,0,"DATE: ");
-
 
         LCD_String_xy(2,0,"TIME: ");
 
@@ -5915,10 +5912,9 @@ void main(void) {
         strcpy(val_aux, value);
         sprintf(value,".%d",RH_Decimal);
         strcat(val_aux, value);
-        strcat(val_aux, "%");
         _delay((unsigned long)((500)*(8000000/4000.0)));
 
-        strcat(val_aux, ", ");
+        strcat(val_aux, ",");
         sprintf(value,"%d",T_Integral);
         strcat(val_aux, value);
         sprintf(value,".%d",T_Decimal);

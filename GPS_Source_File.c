@@ -43,11 +43,8 @@ void main(void) {
         T_Decimal   = DHT11_ReadData(); /* read Relative Temperature's decimal value */
         Checksum    = DHT11_ReadData(); /* read 8-bit checksum value */
 
-        //waterSensor=ADC_Read(1);
-        //sprintf(value,"%d",waterSensor); 
         LCD_String_xy(1,0,"DATE: ");
-        //LCD_String(waterSensor);                           
-
+        
         LCD_String_xy(2,0,"TIME: ");
         
         /* convert temperature value to ascii and send it to display*/
@@ -75,10 +72,9 @@ void main(void) {
         strcpy(val_aux, value);
         sprintf(value,".%d",RH_Decimal);
         strcat(val_aux, value);
-        strcat(val_aux, "%");
         __delay_ms(500);
         
-        strcat(val_aux, ", ");
+        strcat(val_aux, ",");
         sprintf(value,"%d",T_Integral);
         strcat(val_aux, value);
         sprintf(value,".%d",T_Decimal);
